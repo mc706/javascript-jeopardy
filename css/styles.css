@@ -1,0 +1,8 @@
+.question{
+    height:100px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: 35px;
+    cursor: pointer;
+}

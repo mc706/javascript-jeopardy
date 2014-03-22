@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+
+</head>
+<body>
+	<div class="container">
+        <div class="text-center">
+            <h1 style="">Javascript Jeopardy!!</h1>
+        </div>
+        <br>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body" id="main-board">
+            </div>
+            <div class="panel-footer">
+                <div class="pull-right"><h4>Score: <span id="score">0</span></h4></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+	</div>
+<div class="modal fade" id="question-modal" role="dialog" aria-labelledby="question-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p id="question" style="font-size: 1.5em">One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer ">
+        <div id="answers" class="text-center">
+
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>

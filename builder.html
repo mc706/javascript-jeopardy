@@ -1,0 +1,92 @@
+<!doctype html>
+<html data-ng-app="jeopardy">
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+</head>
+<body data-ng-controller="MainCtrl">
+    <div class="container">
+        <div class="page-header">
+            <h1>Board Creator</h1>
+        </div>
+        <h2>Categories:</h2>
+        <div class="panel panel-default" data-ng-repeat="category in board">
+            <div class="panel-heading"><input type="text" data-ng-model="category.name"></div>
+            <div class="panel-body">
+                <h4>Questions</h4>
+                <div class="panel panel-default" data-ng-repeat="question in category.questions">
+                    <div class="panel-heading"><input type="text" data-ng-model="question.question" style="width:100%"></div>
+                    <div class="panel-body">
+                        <label for="value">Question Values</label>
+                        <input id="value" type="text" data-ng-model="question.value">
+                        <table class="table table-bordered">
+                            <thead><tr><th>Answer</th><th>Correct?</th></tr></thead>
+                            <tbody>
+                                <tr data-ng-repeat="answer in question.answers">
+                                    <td><input type="text" data-ng-model="answer.text"  style="width:100%"></td>
+                                    <td><input type="checkbox" data-ng-model="answer.correct"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <label for="answerAdd">Add Answer</label>
+                        <input id="answerAdd" type="text" data-ng-model="answerText">
+                        <button class="btn" data-ng-click="addAnswer(question)">Add</button>
+                    </div>
+                </div>
+                <label for="questionText">Add Question</label>
+                <input type="text" id=questionText data-ng-model="questionText">
+                <button class="btn" data-ng-click="addQuestion(category)">Add</button>
+            </div>
+        </div>
+        <label for="categoryName">Add Category</label>
+        <input type="text" id=categoryName data-ng-model="categoryName">
+        <button class="btn" data-ng-click="addCategory()">Add</button>
+    </div>
+    <div class="container">
+        <h3>Output</h3>
+            <pre>
+            {{board}}
+        </pre>
+        <textarea data-ng-model="pre" style="width: 100%">{{board}}</textarea>
+        <button class="btn" data-ng-click="load()">Load</button>
+    </div>
+
+
+<script>
+    var app = angular.module('jeopardy',[]);
+    app.controller('MainCtrl', function($scope){
+        $scope.board = [];
+
+        $scope.load = function(){
+            $scope.board = JSON.parse($scope.pre);
+        };
+
+        $scope.addCategory = function(){
+            $scope.board.push({
+                name:$scope.categoryName,
+                questions:[]
+            });
+            $scope.categoryName = "";
+        };
+
+        $scope.addQuestion = function(category){
+            category.questions.push({
+                question:$scope.questionText,
+                value:0,
+                answers:[]
+            });
+            $scope.questionText = "";
+        };
+
+        $scope.addAnswer = function(question){
+            question.answers.push({
+                text:$scope.answerText,
+                correct:false
+            });
+            $scope.answerText = "";
+        };
+
+    });
+</script>
+</body>
+</html>
